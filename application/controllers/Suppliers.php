@@ -1,13 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Suppliers extends CI_Controller {
+class Suppliers extends MY_Controller {
 
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Supplier_model');
+    }
+
+    protected function middleware()
+    {
+        return array('access_control');
+    }
 
     public function index()
     {
         $this->load->model('Supplier_model');
-
         $suppliers = $this->Supplier_model->index_supplier();
 
         response_helper('fornecedores', $suppliers);

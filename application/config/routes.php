@@ -70,11 +70,11 @@ $route['collaboratos/'] = 'collaboratos/delete';
 $route['user/xyz/(:num)/(:any)'] = 'user/login';
 
 // routes group Products
-
 $route['products/(:num)'] = 'products';
 $route['produtcs/'] = 'produtcs/store';
 $route['produtcs/'] = 'produtcs/update';
 $route['produtcs/'] = 'produtcs/delete';
+
 
 
 

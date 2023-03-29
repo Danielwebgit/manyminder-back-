@@ -5,7 +5,6 @@ require (APPPATH.'/libraries/REST_Controller.php');
 
 use Restserver\Libraries\REST_Controller;
 
-
 class Login extends REST_Controller {
 
 
@@ -13,24 +12,23 @@ class Login extends REST_Controller {
 	{
 		parent::__construct();
         $this->load->library('Authorization_Token');
+        $this->CI =& get_instance();
 	}
 
     public function index_post()
     {
         $this->load->model('User_model');
         
-        $token_data['username'] = $this->input->post('username');
+        $token_data['email'] = $this->input->post('email');
         $token_data['password'] = $this->input->post('password');
 
         // Verifica as credenciais de login
-        $user = $this->User_model->login_user($token_data['username'], $token_data['password']);
-
+        $user = $this->User_model->login_user($token_data['email'], $token_data['password']);
+        
         if ($user) {
-            // Cria um token JWT para o usuário
-            $this->load->library('Authorization_Token');
-            //$token = JWT::encode(array('user_id' => $user->id), $this->config->item('jwt_key'));
+            $token_data['id'] = (int) $user->id;
             $token = $tokenData['token'] = $this->authorization_token->generateToken($token_data);
-            
+
             // Retorna o token JWT para o cliente
             response_helper('token', $token, 200);
         } else {

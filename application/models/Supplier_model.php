@@ -5,7 +5,7 @@ class Supplier_model extends CI_Model {
     
     public function index_supplier()
     {
-        $this->db->select('suppliers.id, users.username');
+        $this->db->select('suppliers.id, users.username, suppliers.cnpj');
         $this->db->from('suppliers');
         $this->db->join('users', 'users.id = suppliers.user_id', 'inner');
         

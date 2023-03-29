@@ -1,13 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Products extends CI_Controller {
+class Products extends MY_Controller {
 
+
+    protected $access = "Editor";
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Product_model');
+    }
+
+    protected function middleware()
+    {
+        return array('access_control');
+    }
 
     public function index()
     {
-        $this->load->model('Product_model');
-
         $products = $this->Product_model->index_product();
         response_helper('products', $products);
     }
@@ -20,7 +31,6 @@ class Products extends CI_Controller {
         $formData['supplier_id'] = $this->input->post('supplier_id');
         $formData['activated'] = $this->input->post('activated');
 
-        $this->load->model('Product_model');
         $insertProduct = $this->Product_model->store_product($formData);
 
         if($insertProduct) {
@@ -32,7 +42,6 @@ class Products extends CI_Controller {
 
     public function show($id)
     {
-        $this->load->model('Product_model');
         $product = $this->Product_model->show_product($id);
 
         response_helper('product', $product);
@@ -41,8 +50,6 @@ class Products extends CI_Controller {
     public function update($id)
     {
         $formData = $this->input->post();
-
-        $this->load->model('Product_model');
         
         $updateProduct = $this->Product_model->update_product($id, $formData);
         
@@ -55,8 +62,6 @@ class Products extends CI_Controller {
 
     public function delete($id)
     {
-        $this->load->model('Product_model');
-
         $deleteProduct = $this->Product_model->delete_product($id);
         
         if($deleteProduct) {

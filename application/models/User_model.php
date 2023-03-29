@@ -25,9 +25,9 @@ class User_model extends CI_Model {
 
     }
     
-    public function login_user($username, $password)
+    public function login_user($email, $password)
     {
-        $user = $this->db->get_where('users', array('username' => $username))->row();
+        $user = $this->db->get_where('users', array('email' => $email))->row();
          // Verifica se o usuário existe e se a senha está correta
          if ($user && password_verify($password, $user->password)) {
 

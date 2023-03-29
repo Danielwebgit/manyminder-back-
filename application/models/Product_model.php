@@ -52,11 +52,14 @@ class Product_model extends CI_Model {
         $query = $this->db->get_where('products', array('id' => $id))->row_array();
         
         if($query) {
-            $this->db->from('products');
-            $this->db->set($input);
+
+            $inputSS = $input;
+            // $this->db->from('products');
+            // $this->db->where('id', $id);
             $this->db->where('id', $id);
-            $grg = $this->db->update();
-            $fr = 'cdsc';
+            $this->db->set($input, TRUE);
+            $this->db->update('products', $input);
+            
             return true;
         } else {
 
