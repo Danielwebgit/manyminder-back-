@@ -1,18 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class Users extends CI_Controller {
 
 
 	public function index()
 	{
 		$this->load->model('user_model');
 		$users = $this->user_model->index_user();
-
-		$this->output
-		->set_status_header(200)
-		->set_content_type('application/json')
-		->set_output(json_encode(array('users' => $users))); 
+		
+		response_helper('users', $users);
 	}
 
 	public function store()

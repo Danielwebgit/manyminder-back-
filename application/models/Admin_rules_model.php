@@ -5,27 +5,27 @@ class Admin_rules_model extends CI_Model {
     
     public function index_admin_rules()
     {
-        $query = $this->db->get('admin_rules');
+        $query = $this->db->get('rules');
         return $query->result_array();
     }
 
     public function store_admin_rules($formData)
     {
-        return $this->db->insert('admin_rules', $formData);
+        return $this->db->insert('rules', $formData);
     }
 
     public function show_admin_rules(int $id)
     {
-        $query = $this->db->get_where('admin_rules', array('id' => $id));
+        $query = $this->db->get_where('rules', array('id' => $id));
         return $query->row_array();
     }
 
     public function update_admin_rules(int $id, array $input)
     {
-        $query = $this->db->get_where('admin_rules', array('id' => $id))->row_array();
+        $query = $this->db->get_where('rules', array('id' => $id))->row_array();
   
         if($query){
-            $this->db->update('admin_rules', $input, array('id' => $id));
+            $this->db->update('rules', $input, array('id' => $id));
             return true;
         } else {
             return false;
@@ -34,10 +34,10 @@ class Admin_rules_model extends CI_Model {
 
     public function delete_admin_rules(int $id)
     {
-        $query = $this->db->get_where('admin_rules', array('id' => $id))->row_array();
+        $query = $this->db->get_where('rules', array('id' => $id))->row_array();
 
         if($query){
-            $this->db->delete('admin_rules', array('id' => $id));
+            $this->db->delete('rules', array('id' => $id));
             return true;
         } else {
             return false;

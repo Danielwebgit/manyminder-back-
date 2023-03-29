@@ -57,7 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['auth/'] = 'auth/login ';
 
-$route['user/'] = 'user/login ';
+$route['users/'] = 'user/login ';
 
 $route['collaboratos/'] = 'collaboratos';
 

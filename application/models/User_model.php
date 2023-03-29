@@ -3,11 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_model extends CI_Model {
 
-    public function index_user()     
+    public function index_user()
     {
-        $this->db->select('*');
-        $this->db->from('users');
-        return $this->db->get()->result();
+        $query = $this->db->query("
+        SELECT DISTINCT u.id , u.username, u.activated, r.name FROM manyminder.users u 
+        LEFT JOIN manyminder.rules_permissions rp ON u.id = rp.user_id LEFT JOIN manyminder.rules r 
+        ON r.id = rp.rule_id  ORDER BY u.id DESC;
+        ");
+        
+        return $query->result_array();
     }
 
     public function store_user($formData)
