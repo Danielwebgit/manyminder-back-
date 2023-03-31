@@ -1,13 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Users extends CI_Controller {
+class Users extends MY_Controller {
+
+	// protected function middleware()
+    // {
+    //     return array('access_control');
+    // }
 
 
 	public function index()
 	{
-		$this->load->model('user_model');
-		$users = $this->user_model->index_user();
+		$this->load->model('rules_users_model');
+		$rules_users = $this->rules_users_model->with('users')->get_all();
+		response_helper('users', $rules_users);
+		die;
+		//$users = $this->user_model->index_user();
 		
 		response_helper('users', $users);
 	}

@@ -28,8 +28,10 @@ class AccessControlMiddleware extends AbstractAuthorization {
        
         $headers = $this->CI->input->request_headers();
 
-        $token = str_replace('Bearer ', '', $headers['Authorization']);
+        
 
+        $token = str_replace('Bearer ', '', $headers['Authorization']);
+        
         // if(isset($headers['Authorization']) == true) {
             
         //     $token = str_replace('Bearer ', '', $headers['Authorization']);
@@ -58,9 +60,9 @@ class AccessControlMiddleware extends AbstractAuthorization {
         foreach($rules_permissions as $rulesName) {
             $permissions[] = $rulesName['name'];
         }
-
+        
         $isAllowed = in_array($route, $permissions);
-
+        
         if(! $isAllowed){
             die(response_helper('error', 'Access denied'));
         }
