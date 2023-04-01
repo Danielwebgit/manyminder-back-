@@ -15,7 +15,8 @@
 		"php": ">=5.3.7",
 		"chriskacerguis/codeigniter-restserver": "^3.1",
 		"firebase/php-jwt": "^6.4",
-		"luthier/luthier": "^1.0"
+		"luthier/luthier": "^1.0",
+		"avenirer/codeigniter-better-model-plus": "^3.3"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

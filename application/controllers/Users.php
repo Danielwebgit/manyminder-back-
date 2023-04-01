@@ -11,11 +11,9 @@ class Users extends MY_Controller {
 
 	public function index()
 	{
-		$this->load->model('rules_users_model');
-		$rules_users = $this->rules_users_model->with('users')->get_all();
-		response_helper('users', $rules_users);
-		die;
-		//$users = $this->user_model->index_user();
+		$this->load->model('users_model');
+	
+		$users = $this->users_model->index_user();
 		
 		response_helper('users', $users);
 	}
