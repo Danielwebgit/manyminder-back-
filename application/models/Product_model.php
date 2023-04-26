@@ -3,10 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Product_model extends CI_Model {
     
-
     public function index_product()
     {
-  
         $this->db->select('products.id, products.name, products.description, products.priceUn, products.supplier_id, products.activated, users.username');
         $this->db->from('products');
         $this->db->join('suppliers', 'suppliers.id = products.supplier_id', 'inner');
@@ -19,7 +17,6 @@ class Product_model extends CI_Model {
 
     public function store_product($formData)
     {
-        $formDatasss = $formData;
         return $this->db->insert('products', $formData);
     }
 
@@ -29,8 +26,6 @@ class Product_model extends CI_Model {
         return $this->db->get('products')->result_array();
       }
 
-      
-      
       public function get_count() {
         return $this->db->count_all_results('products');
       }
@@ -48,21 +43,13 @@ class Product_model extends CI_Model {
 
     public function update_product(int $id, $input)
     {
-      
         $query = $this->db->get_where('products', array('id' => $id))->row_array();
-        
+      
         if($query) {
-
-            $inputSS = $input;
-            // $this->db->from('products');
-            // $this->db->where('id', $id);
-            $this->db->where('id', $id);
             $this->db->set($input, TRUE);
-            $this->db->update('products', $input);
-            
+            $this->db->update('products', $input, array('id' => $id));
             return true;
         } else {
-
             return false;
         }
     }

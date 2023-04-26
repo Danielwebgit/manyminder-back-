@@ -56,7 +56,7 @@ class Products extends MY_Controller {
         if($updateProduct) {
             response_helper('message', 'Produto atualizado com sucesso!');
         } else {
-            response_helper('message', 'Error ao atualizar', 401);
+            response_helper('message', 'Error ao atualizar, produto não existe!', 401);
         }
     }
 

@@ -75,6 +75,11 @@ $route['produtcs/'] = 'produtcs/store';
 $route['produtcs/'] = 'produtcs/update';
 $route['produtcs/'] = 'produtcs/delete';
 
+// routes group Permissions
+$route['config-permissions'] = 'Config_Permissions/index';
+$route['config-permissions/store'] = 'Config_Permissions/store';
+$route['config-permissions/update'] = 'Config_Permissions/update';
+$route['config-permissions/delete'] = 'Config_Permissions/delete';
 
 
 

@@ -17,13 +17,13 @@ class Login extends REST_Controller {
 
     public function index_post()
     {
-        $this->load->model('User_model');
+        $this->load->model('users_model');
         
         $token_data['email'] = $this->input->post('email');
         $token_data['password'] = $this->input->post('password');
 
         // Verifica as credenciais de login
-        $user = $this->User_model->login_user($token_data['email'], $token_data['password']);
+        $user = $this->users_model->login_user($token_data['email'], $token_data['password']);
         
         if ($user) {
             $token_data['id'] = (int) $user->id;
